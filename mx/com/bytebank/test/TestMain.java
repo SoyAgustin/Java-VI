@@ -22,6 +22,9 @@ public class TestMain {
 			System.out.println(edades[i]);
 		}
 		
+		//Veamos como podemos ver cuales son las posiciones ocupadas, no unicamente el unimero total
+		
+		
 		
 	}
 }
