@@ -14,6 +14,14 @@ public class TestArrayList {
 		lista.add(cc2);
 		
 		Cuenta obtenerCuenta = (Cuenta) lista.get(0);
-		System.out.println(obtenerCuenta);
+		//System.out.println(obtenerCuenta);
+		
+		//¿como podria obtener todos los elementos de la lista
+		
+		for (int i =0;i<lista.size();i++) {
+			System.out.println("-----elemento "+i+"-------");
+			System.out.println(lista.get(i));
+			System.out.println("----------------------\n");
+		}
 	}
 }
