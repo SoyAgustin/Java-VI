@@ -1,12 +1,15 @@
 package mx.com.bytebank.test;
 
 import java.util.ArrayList;
+import java.util.List;
+//La interface List se puede implementar en:
+//ArrayList, LinkedList y Vector
 
 import mx.com.bytebank.modelo.*;
 
 public class TestArrayList {
 	public static void main(String[] args) {
-		ArrayList<Cuenta> lista = new ArrayList<>();
+		List<Cuenta> lista = new ArrayList<>();
 		Cuenta cc = new CuentaCorriente(11, 2);
 		Cuenta cc2 = new CuentaCorriente(12, 3);
 		Cuenta cc3 = new CuentaCorriente(11, 2);
