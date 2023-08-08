@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 //La interface List se puede implementar en:
 //ArrayList, LinkedList y Vector
+//Como el vector es 'thead safe' tiene un gran impacto
+// y es muy pooco comun
 
 import mx.com.bytebank.modelo.*;
 
