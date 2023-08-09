@@ -90,8 +90,20 @@ public class TestOrdenarLista {
 		 *  posteriormente se tiene que sobreescribir 
 		 *  el método 'compareTo' para establecer
 		 *  un criterio de comparación. */
-		Collections.sort(lista);
+		
+		/*Implementamos una clase anónima, con esto nos
+		 * ahorramos el escribir una nueva clase ordenadorPorNombre*/
+		Collections.sort(lista, new Comparator<Cuenta>() {
+			@Override
+			public int compare(Cuenta o1, Cuenta o2) {
+			String nombre1=o1.getTitular().getNombre();
+			String nombre2=o2.getTitular().getNombre();
+			
+			return nombre1.compareTo(nombre2);
+		}
+			});
 		System.out.println("Después de ordenar por saldo con Collections");
+		
 		for(Cuenta cuenta:lista) {
 			System.out.println(cuenta.getSaldo());
 		}
@@ -126,6 +138,7 @@ class OrdenadorNumeroPorNumeroCuenta implements Comparator<Cuenta>{
 	}
 	
 }
+ 
 class OrdenadorPorNombre implements Comparator<Cuenta>{
 	@Override
 	public int compare(Cuenta o1,Cuenta o2) {
@@ -134,5 +147,5 @@ class OrdenadorPorNombre implements Comparator<Cuenta>{
 	
 	return nombre1.compareTo(nombre2);/*Usando un método
 	 de String que retorna un entero*/
-	}
-}
+	} 
+} 
