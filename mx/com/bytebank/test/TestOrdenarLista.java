@@ -1,6 +1,7 @@
 package mx.com.bytebank.test;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import mx.com.bytebank.modelo.*;
@@ -76,7 +77,24 @@ public class TestOrdenarLista {
 		for(Cuenta cuenta:lista) {
 			System.out.println(cuenta.getTitular().getNombre());
 		}
-		
+		//------------------------------------------
+		System.out.println("Antes de ordenar por saldo con Collections");
+		for(Cuenta cuenta:lista) {
+			System.out.println(cuenta.getSaldo());
+		}
+		/*Se pueden ordenar las listas con la clase
+		 *  collections, para esto se debe implementar
+		 *  la interfaz 'Comparable' a la clase de los
+		 *  objetos que deseemos comparar. 
+		 *  En este caso a la clase cuenta
+		 *  posteriormente se tiene que sobreescribir 
+		 *  el método 'compareTo' para establecer
+		 *  un criterio de comparación. */
+		Collections.sort(lista);
+		System.out.println("Después de ordenar por saldo con Collections");
+		for(Cuenta cuenta:lista) {
+			System.out.println(cuenta.getSaldo());
+		}
 		
 	}
 }

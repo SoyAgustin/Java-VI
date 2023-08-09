@@ -1,6 +1,6 @@
 package mx.com.bytebank.modelo;
 
-public abstract class Cuenta {
+public abstract class Cuenta implements Comparable<Cuenta> {
 	protected double saldo; // es accesible para las clases hijas (como CuentaAhorros al usar this.sal)
 	private int agencia;
 	private int numero;
@@ -85,5 +85,18 @@ public abstract class Cuenta {
 		return this.agencia == cuenta.getAgencia() &&
 				this.numero == cuenta.getNumero();
 	}
+	
+	
+	/*En este caso 'compareTo' establece el criterio
+	 * para comparar y hacer un ordenamiento de las 
+	 * listas con la clase Collections del paquete
+	 * Util*/
+	@Override
+	public int compareTo(Cuenta outra) {
+		//Por ejemplo un ordenamiento por saldo
+	        return Double.compare(this.saldo, outra.saldo);//Aqui se uso el metodo compare de los wrappers, pero pudo hacerse otra logica de comparación.
+	}
+	/*Este ultimo método es el que hace que funcione 
+	 * Collections.sort(lista) en TestOrdenarLista.java*/
 	
 }
