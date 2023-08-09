@@ -15,8 +15,9 @@ public abstract class Cuenta {
 		}
 		this.agencia = agencia;
 		this.numero = numero; 
-		total++;
-		System.out.println("Cuentas totales = "+total);
+		/*total++;
+		System.out.println("Cuentas totales = "+total);*/
+		System.out.println("numero: "+numero+"  Agencia:"+agencia);
 	}
 	
 	public abstract void depositar(double saldo);
