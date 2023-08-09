@@ -7,26 +7,41 @@ import mx.com.bytebank.modelo.*;
 
 public class TestOrdenarLista {
 	public static void main(String[] args) {
-		Cuenta cc1 = new CuentaCorriente(22, 33);
-		cc1.depositar(333.0);
+	    Cuenta cc1 = new CuentaCorriente(22, 33);
+	    Cliente clienteCC1 = new Cliente();
+	    clienteCC1.setNombre("Diego");
+	    cc1.setTitular(clienteCC1);
+	    cc1.depositar(333.0);
 
-		Cuenta cc2 = new CuentaAhorros(22, 44);
-		cc2.depositar(444.0);
+	    Cuenta cc2 = new CuentaAhorros(22, 44);
+	    Cliente clienteCC2 = new Cliente();
+	    clienteCC2.setNombre("Renato");
+	    cc2.setTitular(clienteCC2);
+	    cc2.depositar(444.0);
 
-		Cuenta cc3 = new CuentaCorriente(22, 11);
-		cc3.depositar(111.0);
+	    Cuenta cc3 = new CuentaCorriente(22, 11);
+	    Cliente clienteCC3 = new Cliente();
+	    clienteCC3.setNombre("Liam");
+	    cc3.setTitular(clienteCC3);
+	    cc3.depositar(111.0);
 
-		Cuenta cc4 = new CuentaAhorros(22, 22);
-		cc4.depositar(222.0);
-
-		List<Cuenta> lista = new ArrayList<>();
-		lista.add(cc1);
-		lista.add(cc2);
-		lista.add(cc3);
-		lista.add(cc4);
+	    Cuenta cc4 = new CuentaAhorros(22, 22);
+	    Cliente clienteCC4 = new Cliente();
+	    clienteCC4.setNombre("Noel");
+	    cc4.setTitular(clienteCC4);
+	    cc4.depositar(222.0);
+	    
+	    List<Cuenta>  lista = new ArrayList<>();
+	    lista.add(cc1);
+	    lista.add(cc2);
+	    lista.add(cc3);
+	    lista.add(cc4);
 		
 		/*Como podemos ordenar las cuentas*/
-		System.out.println("Antes de ordenar");
+	    
+	    //Ordenando por numero
+	    //---------------------------------------
+		System.out.println("Antes de ordenar por numero");
 		for(Cuenta cuenta:lista) {
 			System.out.println(cuenta.getNumero());
 		}
@@ -40,10 +55,29 @@ public class TestOrdenarLista {
 		
 		Comparator<Cuenta> Comparator = new OrdenadorNumeroPorNumeroCuenta();
 		lista.sort(Comparator);
-		System.out.println("Despues de ordenar");
+		System.out.println("Despues de ordenar por numero");
 		for(Cuenta cuenta:lista) {
 			System.out.println(cuenta.getNumero());
 		}
+		//--------------------------------------------
+		
+		//Ordenando por nombre:
+		//--------------------------------------------
+		System.out.println("Antes de ordenar por nombre");
+		for(Cuenta cuenta:lista) {
+			System.out.println(cuenta.getTitular().getNombre());
+		}
+		
+		
+		Comparator<Cuenta> ComparatorNombre = new OrdenadorPorNombre();
+		lista.sort(ComparatorNombre);
+		
+		System.out.println("Después de ordenar por nombre");
+		for(Cuenta cuenta:lista) {
+			System.out.println(cuenta.getTitular().getNombre());
+		}
+		
+		
 	}
 }
 
@@ -59,14 +93,28 @@ class OrdenadorNumeroPorNumeroCuenta implements Comparator<Cuenta>{
 	
 	@Override
 	public int compare(Cuenta o1, Cuenta o2) {
+		/*
 		if(o1.getNumero()==o2.getNumero()) {
 			return 0;
 		}else if(o1.getNumero()>o2.getNumero()) {
 			return 1;
 		}else {
 			return -1;
-		}
-		
+		}*/
+		/*Equivalentemente de forma intermedia:
+		 return o1.getNumero()-o2.getNumero();*/
+		/*Usando wrappers:*/
+		return Integer.compare(o1.getNumero(), o2.getNumero());
 	}
 	
+}
+class OrdenadorPorNombre implements Comparator<Cuenta>{
+	@Override
+	public int compare(Cuenta o1,Cuenta o2) {
+	String nombre1=o1.getTitular().getNombre();
+	String nombre2=o2.getTitular().getNombre();
+	
+	return nombre1.compareTo(nombre2);/*Usando un método
+	 de String que retorna un entero*/
+	}
 }
